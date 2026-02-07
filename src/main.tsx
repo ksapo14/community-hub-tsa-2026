@@ -1,10 +1,22 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import { BrowserRouter, Routes, Route } from 'react-router' // Added Route
+import { Home } from './pages/Home.tsx'
+
+const paths = {
+  '/': <Home />
+};
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <BrowserRouter>
+    <Routes>
+      {Object.entries(paths).map(([path, element]) => (
+        <Route
+          key={path}
+          path={path}
+          element={element}
+        />
+      ))}
+    </Routes>
+  </BrowserRouter>,
 )
